@@ -1,6 +1,7 @@
 "use strict";
 
 const icons = {
+  compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',
   pin: '<path d="M20 10c0 5-8 10-8 10s-8-5-8-10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
   search: '<circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/>',
   bookmark: '<path d="M6 20V4h12v16l-6-4Z"/>',
@@ -147,7 +148,7 @@ function cardMarkup(dish) {
       <p class="card-location">${icon("pin")} ${dish.canteen} · ${dish.window}</p>
       <p class="card-note ${dish.caution ? "warning" : ""}">${dish.note}</p>
       <div class="card-bottom">
-        <span class="rating">${icon("star")} <strong>${ratingFor(dish)}</strong>· ${dish.reviews.length} 条示例点评</span>
+        <span class="rating">${icon("star")} <strong>${ratingFor(dish)}</strong>· ${dish.reviews.length} 条点评</span>
         <span>${dish.spice}</span>
       </div>
     </div>

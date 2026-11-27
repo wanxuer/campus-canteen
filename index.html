@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f7f1">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="饭点见，校园食堂菜品推荐与点评。按食堂、口味和预算找菜，看看同学的排队体验和点餐建议。">
   <title>饭点见 · 校园食堂点评推荐</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+  <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css?v=2">
+  <script src="./app.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip" href="#menu">跳到菜品</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#" aria-label="饭点见，返回首页">
-        <img src="./favicon.svg" width="34" height="34" alt="">
+        <img src="./favicon.svg?v=2" width="42" height="42" alt="">
         <span>饭点见<small>校园食堂点评</small></span>
       </a>
       <nav class="main-nav" aria-label="主导航">
-        <button type="button" data-nav="all" aria-current="page">发现菜品</button>
-        <button type="button" data-nav="caution">避雷指南</button>
+        <button type="button" data-nav="all" aria-current="page"><span data-icon="compass"></span>发现菜品</button>
+        <button type="button" data-nav="caution"><span data-icon="flag"></span>避雷指南</button>
       </nav>
       <button class="button button-light saved-button" type="button" data-nav="saved"><span data-icon="bookmark"></span>我的收藏<span id="saved-count" class="saved-count" hidden></span></button>
     </div>
@@ -29,13 +29,14 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
         <div class="campus"><span data-icon="pin"></span> 青禾大学 <span class="campus-divider"></span> 演示校区</div>
-        <h1 id="hero-title">今天食堂<br>吃点<span>什么？</span></h1>
-        <p>先看看同学怎么吃，再决定去哪一个窗口。</p>
+        <h1 id="hero-title">今天食堂<br><span>吃点什么？</span></h1>
+        <p>发现校园新菜，看看同学怎么点。</p>
         <div class="hero-actions">
           <button class="button button-primary" data-nav="all" type="button">去找好吃的 <span data-icon="arrow"></span></button>
           <button class="button button-ghost" id="surprise" type="button"><span data-icon="shuffle"></span> 帮我选一道</button>
         </div>
       </div>
+      <img class="hero-mascot" src="./assets/rice-mascot.webp" width="400" height="360" alt="">
     </section>
     <section id="menu" class="menu" aria-labelledby="menu-title">
       <div class="section-heading">
