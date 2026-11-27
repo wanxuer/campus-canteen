@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f7f0">
+  <meta name="theme-color" content="#fff8e9">
   <meta name="description" content="饭点见，校园食堂菜品推荐与点评。按食堂、口味和预算找菜，看看同学的排队体验和点餐建议。">
   <title>饭点见 · 校园食堂点评推荐</title>
-  <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=3">
-  <script src="./app.js?v=3" defer></script>
+  <link rel="icon" href="./favicon.svg?v=4" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css?v=4">
+  <script src="./app.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip" href="#menu">跳到菜品</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#" aria-label="饭点见，返回首页">
-        <img src="./favicon.svg?v=3" width="42" height="42" alt="">
+        <img src="./favicon.svg?v=4" width="42" height="42" alt="">
         <span>饭点见<small>校园食堂点评</small></span>
       </a>
       <nav class="main-nav" aria-label="主导航">
@@ -26,24 +26,34 @@
     </div>
   </header>
   <main class="container">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-content">
-        <div class="campus"><span data-icon="pin"></span> 青禾大学 <span class="campus-divider"></span> 演示校区</div>
-        <h1 id="hero-title">今天食堂<br><span>吃点什么？</span></h1>
-        <p>看同学点评，找今天想吃的那一道。</p>
-        <div class="hero-actions">
-          <button class="button button-primary" data-nav="all" type="button">去找好吃的 <span data-icon="arrow"></span></button>
-          <button class="button button-ghost" id="surprise" type="button"><img class="shuffle-mascot" src="./assets/rice-mascot.webp" width="25" height="25" alt=""> 帮我选一道</button>
+    <div class="lunch-board">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <div class="campus"><span data-icon="pin"></span> 青禾大学 · 演示校区</div>
+          <h1 id="hero-title">今天<span>吃啥？</span></h1>
+          <div class="hero-actions">
+            <button class="button button-primary" id="surprise" type="button"><span data-icon="shuffle"></span> 帮我选一道</button>
+          </div>
         </div>
-      </div>
-      <figure class="hero-photo">
-        <img src="./assets/hero.webp" width="1600" height="900" alt="番茄牛腩浇在米饭上">
-        <figcaption><span>新菜上架</span><button class="hero-dish" type="button" data-action="detail" data-id="1" aria-haspopup="dialog">番茄牛腩饭 <span data-icon="arrow"></span></button><small>一食堂 · 一楼 03 窗口</small></figcaption>
-      </figure>
-    </section>
+        <img class="lunch-doodle" src="./assets/lunch-doodle.webp" width="350" height="350" alt="">
+        <div class="lunch-shortcuts" aria-label="按就餐需求找菜">
+          <button type="button" data-shortcut="budget">¥15 以内 <span data-icon="arrow"></span></button>
+          <button type="button" data-shortcut="quick">赶时间 <span data-icon="arrow"></span></button>
+          <button type="button" data-shortcut="new">想尝新 <span data-icon="arrow"></span></button>
+        </div>
+      </section>
+      <article class="hero-photo">
+        <img src="./assets/dish-2.webp" width="720" height="580" alt="黑椒鸡腿饭配西兰花">
+        <div class="featured-body">
+          <div class="featured-review"><span class="review-avatar" aria-hidden="true">饼</span><span><strong>饼同学</strong><small>同学推荐 · 示例点评</small></span><span class="featured-rating">★ 5.0</span></div>
+          <p>“鸡腿皮有一点焦香，配青菜不会太腻。”</p>
+          <button class="hero-dish" type="button" data-action="detail" data-id="2" aria-haspopup="dialog"><span><strong>黑椒鸡腿饭</strong><small>二食堂 · 一楼 06 窗口</small></span><b>¥14 <span data-icon="arrow"></span></b></button>
+        </div>
+      </article>
+    </div>
     <section id="menu" class="menu" aria-labelledby="menu-title">
       <div class="section-heading">
-        <div><h2 id="menu-title">发现菜品</h2><p id="section-description">按口味和预算，找到今天想吃的一餐。</p></div>
+        <div><h2 id="menu-title" tabindex="-1">发现菜品</h2><p id="section-description">按口味和预算，找到今天想吃的一餐。</p></div>
         <label class="search">
           <span data-icon="search"></span>
           <span class="sr-only">搜索菜名、食堂或窗口</span>
@@ -55,6 +65,7 @@
           <button type="button" data-mode="all" aria-pressed="true">全部</button>
           <button type="button" data-mode="new" aria-pressed="false"><span data-icon="spark"></span> 新菜上架</button>
           <button type="button" data-mode="recommended" aria-pressed="false"><span data-icon="star"></span> 口碑推荐</button>
+          <button type="button" data-mode="quick" aria-pressed="false">出餐快</button>
           <button type="button" data-mode="caution" aria-pressed="false"><span data-icon="flag"></span> 避雷指南</button>
         </div>
         <div class="selects">

@@ -92,6 +92,7 @@ const views = {
   all: ["发现菜品", "按口味和预算，找到今天想吃的一餐。"],
   new: ["新菜上架", "看看食堂最近添了什么。"],
   recommended: ["口碑推荐", "查看示例评分达到 4.3 分且暂无避雷提示的菜品。"],
+  quick: ["出餐快", "示例排队时间上限为 8 分钟。"],
   caution: ["避雷指南", "看看同学遇到过哪些问题，以及怎么点更合适。"],
   saved: ["我的收藏", "留着下次吃。收藏保存在当前浏览器。"]
 };
@@ -105,6 +106,7 @@ function filteredDishes() {
     all: () => true,
     new: (dish) => dish.fresh,
     recommended: (dish) => !dish.caution && Number(ratingFor(dish)) >= 4.3,
+    quick: (dish) => !dish.caution && Number(dish.queue.match(/–(\d+)/)?.[1]) <= 8,
     caution: (dish) => dish.caution,
     saved: (dish) => personal.favorites.includes(dish.id)
   };
@@ -164,7 +166,7 @@ function render() {
     button.setAttribute("aria-pressed", String(button.dataset.mode === state.mode));
   });
   document.querySelectorAll(".site-header [data-nav]").forEach((button) => {
-    const active = ["all", "new", "recommended"].includes(state.mode) ? "all" : state.mode;
+    const active = ["all", "new", "recommended", "quick"].includes(state.mode) ? "all" : state.mode;
     if (button.dataset.nav === active) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
@@ -269,7 +271,7 @@ function openDish(dish, opener) {
       </div>
       <div class="detail-actions">
         ${saveButton(dish)}
-        <button class="button button-green" type="button" data-action="write" aria-expanded="false" aria-controls="review-form">写点评</button>
+        <button class="button button-accent" type="button" data-action="write" aria-expanded="false" aria-controls="review-form">写点评</button>
       </div>
       <div id="detail-status" role="status"></div>
       <form class="review-form" id="review-form" hidden>
@@ -283,7 +285,7 @@ function openDish(dish, opener) {
         <label for="comment">用餐感受</label>
         <textarea id="comment" name="comment" required maxlength="160" placeholder="口味怎么样？什么时候去的，排了多久？"></textarea>
         <p>最多 160 字，点评仅保存在当前浏览器。</p>
-        <button class="button button-green" type="submit">保存我的点评</button>
+        <button class="button button-accent" type="submit">保存我的点评</button>
       </form>
       <h3>同学点评</h3>
       <article class="review" id="personal-review" hidden>
@@ -371,6 +373,16 @@ document.querySelectorAll("[data-mode]").forEach((button) => {
 });
 Object.values(controls).forEach((control) => {
   control.addEventListener(control === controls.search ? "input" : "change", render);
+});
+document.querySelectorAll("[data-shortcut]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const shortcut = button.dataset.shortcut;
+    resetControls();
+    if (shortcut === "budget") controls.budget.value = "15";
+    changeView(shortcut === "budget" ? "all" : shortcut);
+    document.querySelector("#menu-title").focus({ preventScroll: true });
+    menu.scrollIntoView({ block: "start" });
+  });
 });
 document.querySelector(".hero-photo").addEventListener("click", handleAction);
 document.querySelector("#surprise").addEventListener("click", (event) => {
