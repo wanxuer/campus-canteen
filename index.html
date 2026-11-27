@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f1">
+  <meta name="description" content="饭点见，校园食堂菜品推荐与点评。按食堂、口味和预算找菜，看看同学的排队体验和点餐建议。">
+  <title>饭点见 · 校园食堂点评推荐</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#menu">跳到菜品</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="饭点见，返回首页">
+        <img src="./favicon.svg" width="34" height="34" alt="">
+        <span>饭点见<small>校园食堂点评</small></span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <button type="button" data-nav="all" aria-current="page">发现菜品</button>
+        <button type="button" data-nav="caution">避雷指南</button>
+      </nav>
+      <button class="button button-light saved-button" type="button" data-nav="saved"><span data-icon="bookmark"></span>我的收藏<span id="saved-count" class="saved-count" hidden></span></button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <div class="campus"><span data-icon="pin"></span> 青禾大学 <span class="campus-divider"></span> 演示校区</div>
+        <h1 id="hero-title">今天食堂<br>吃点<span>什么？</span></h1>
+        <p>先看看同学怎么吃，再决定去哪一个窗口。</p>
+        <div class="hero-actions">
+          <button class="button button-primary" data-nav="all" type="button">去找好吃的 <span data-icon="arrow"></span></button>
+          <button class="button button-ghost" id="surprise" type="button"><span data-icon="shuffle"></span> 帮我选一道</button>
+        </div>
+      </div>
+    </section>
+    <section id="menu" class="menu" aria-labelledby="menu-title">
+      <div class="section-heading">
+        <div><h2 id="menu-title">发现菜品</h2><p id="section-description">按口味和预算，找到今天想吃的一餐。</p></div>
+        <label class="search">
+          <span data-icon="search"></span>
+          <span class="sr-only">搜索菜名、食堂或窗口</span>
+          <input id="search" type="search" placeholder="搜菜名、食堂、窗口" maxlength="50">
+        </label>
+      </div>
+      <div class="filters">
+        <div class="chips" aria-label="快速筛选">
+          <button type="button" data-mode="all" aria-pressed="true">全部</button>
+          <button type="button" data-mode="new" aria-pressed="false"><span data-icon="spark"></span> 新菜上架</button>
+          <button type="button" data-mode="recommended" aria-pressed="false"><span data-icon="star"></span> 口碑推荐</button>
+          <button type="button" data-mode="caution" aria-pressed="false"><span data-icon="flag"></span> 避雷指南</button>
+        </div>
+        <div class="selects">
+          <label><span class="sr-only">食堂</span><select id="canteen"><option value="">全部食堂</option><option>一食堂</option><option>二食堂</option><option>三食堂</option></select></label>
+          <label><span class="sr-only">预算</span><select id="budget"><option value="">不限预算</option><option value="12">¥12 以内</option><option value="15">¥15 以内</option><option value="20">¥20 以内</option></select></label>
+          <label><span class="sr-only">辣度</span><select id="spice"><option value="">不限辣度</option><option>不辣</option><option>微辣</option><option>中辣</option></select></label>
+        </div>
+      </div>
+      <div class="results-bar">
+        <p id="result-count" role="status" aria-live="polite"></p>
+        <label class="sort"><span class="sr-only">排序</span><select id="sort"><option value="default">为你推荐</option><option value="rating">评分最高</option><option value="price">价格最低</option><option value="reviews">点评最多</option></select></label>
+      </div>
+      <div class="dish-grid" id="dish-grid"></div>
+    </section>
+  </main>
+  <footer class="container site-footer">
+    <strong>饭点见</strong>
+    <p>学校、菜品与同学点评均为演示数据。收藏和试写点评保存在当前浏览器。</p>
+    <a href="#" class="back-top">回到顶部 ↑</a>
+  </footer>
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div id="detail-body"></div>
+    <button type="button" class="icon-button close" id="close-detail" aria-label="关闭菜品详情"><span data-icon="close"></span></button>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><p class="container">请启用 JavaScript 后查看菜品和点评。</p></noscript>
+</body>
+</html>
