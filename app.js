@@ -372,6 +372,7 @@ document.querySelectorAll("[data-mode]").forEach((button) => {
 Object.values(controls).forEach((control) => {
   control.addEventListener(control === controls.search ? "input" : "change", render);
 });
+document.querySelector(".hero-photo").addEventListener("click", handleAction);
 document.querySelector("#surprise").addEventListener("click", (event) => {
   const candidates = filteredDishes().filter((dish) => !dish.caution);
   if (!candidates.length) {
